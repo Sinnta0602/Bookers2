@@ -61,11 +61,16 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise' 
 # MEMO: deviseは、rails g devise MODELを打てば、controllerとviewが自動的に生成される。
 # 生成されているけど、コード的に隠れているので、それをコード上に表示するコマンドが
 # rails g devise:views users
 # rails g devise:controllers users
-gem 'bootstrap', '~> 4.6.0' # https://github.com/twbs/bootstrap-rubygem/tree/4.6-stable
+gem 'devise'
+
+
+# https://qiita.com/NaokiIshimura/items/c8db09daefff5c11dadf
+# https://github.com/twbs/bootstrap-rubygem/tree/4.6-stable
+gem 'bootstrap', '~> 4.6.0'
+gem 'jquery-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"

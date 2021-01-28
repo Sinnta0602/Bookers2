@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions",
   }
-  resources :books
-  root to: 'books#top'
 
+  resources :books
+  resources :users, only: [:index, :show, :edit, :update]
+  root 'books#top'
+  get '/about' => 'books#about'
 end

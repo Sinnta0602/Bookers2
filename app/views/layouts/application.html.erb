@@ -1,3 +1,4 @@
+<!--MEMO* 全部共通のHTMLファイル。下のyieldにhtmlファイルが埋め込まれる -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,11 +6,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!--MEMO: application.scssとか application.jsとか はここで読まれる。-->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <!-- MEMO: 全部共通のとこから_nav.htmlを呼んだので、当然全部の画面で表示。 -->
+    <%= render 'layouts/nav', user: @user %>
     <%= yield %>
   </body>
 </html>
