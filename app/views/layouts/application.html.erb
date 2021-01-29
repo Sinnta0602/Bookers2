@@ -15,12 +15,12 @@
   </head>
 
   <body>
+    <!-- MEMO: 全部共通のとこから_nav.htmlを呼んだので、当然全部の画面で表示。 -->
+    <%= render 'layouts/nav', user: @user %>
     <%= flash[:sign_in] %>
     <%= flash[:update] %>
     <%= flash[:sign_out] %>
     <%= flash[:notice] %>
-    <!-- MEMO: 全部共通のとこから_nav.htmlを呼んだので、当然全部の画面で表示。 -->
-    <%= render 'layouts/nav', user: @user %>
     <%= yield %>
   </body>
 </html>
