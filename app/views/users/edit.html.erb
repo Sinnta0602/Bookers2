@@ -1,0 +1,41 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <%= form_with model: @user, local: true do |f| %>
+
+      <% if @user.errors.any? %>
+        <p class="alert">
+          <div id="error_explanation">
+            <ul>
+              <!-- MEMO: errorsのなかにfull_messagesという配列があって、その配列をeachで回して、エラー文を出力 -->
+              <!-- eachは配列の中身(複数ある)を順番に一つ一つ処理してくもの。do endの中に、具体的に何をするか？をかく。 -->
+              <!-- 中身一つ一つを、|msg|っていう名前で定義してる。 -->
+              <!-- そのmsgを使って、do endの中に、具体的に何をするか？をかく。 -->
+              <% @user.errors.full_messages.each do |msg| %>
+                <li>error</li>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </p>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control name" %>
+      </div>
+     <div class="form-group">
+        <%= f.label :image %>
+        <%= f.attachment_field :profile_image, class: "form-control-file user_image" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -7,5 +7,5 @@ class Book < ApplicationRecord
     # Bookモデルに定義すれば、New Bookとか、Bookにまつわるところでエラー文を表示できる。
     # 何にまつわるのか？っていうのは、form_forとかform_withの引数(model: book)とかで判定する。
     validates :title,  presence: :true
-    validates :body,  presence: :true
+    validates :body, presence: true, length: {maximum:200}
 end

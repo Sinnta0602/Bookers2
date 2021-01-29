@@ -1,25 +1,26 @@
-<header class="navbar navbar-fixed-top navbar-inerse">
-  <div class="container">
-    <nav class="nav navbar-nav navbar-left">
-      <span>Bookers</span>
-    </nav>
-    <nav>
-      <!-- MEMO: deviseのヘルパーメソッド。「今ログイン状態かどうか？」を判定。 -->
-      <% if user_signed_in? %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home home" %></li>
-          <li><%= link_to 'Users', users_path, class: "glyphicon glyphicon-user user" %></li>
-          <li><%= link_to 'Books', books_path, class: "glyphicon glyphicon-book books" %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout" %></li>
+<header>
+  <nav class="nav navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <!-- MEMO: deviseのヘルパーメソッド。「今ログイン状態かどうか？」を判定。 -->
+          <% if user_signed_in? %>
+            <li><%= link_to 'Home', user_path(current_user.id), class: "fas fa-home nav-link text-light" %></li>
+            <li><%= link_to 'Users', users_path, class: "fas fa-users nav-link text-light" %></li>
+            <li><%= link_to 'Books', books_path, class: "fas fa-book-open nav-link text-light" %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-light" %></li>
+          <% else %> <!-- ログインしてない時 -->
+            <li><%= link_to 'Home', root_path, class: "fas fa-home nav-link text-light" %></li>
+            <li><%= link_to 'About', home_about_path, class: "fas fa-link nav-link text-light" %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path, class: "fas fa-user-plus nav-link text-light" %></li>
+            <li><%= link_to 'logIn', new_user_session_path, class: "fas fa-sign-in-alt nav-link text-light" %></li>
+          <% end %>
         </ul>
-      <% else %> <!-- ログインしてない時 -->
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Home', root_path, class: "glyphicon glyphicon-home home" %></li>
-          <li><%= link_to 'About', about_path, class: "glyphicon glyphicon-user user" %></li>
-          <li><%= link_to 'SignUp', new_user_registration_path, class: "glyphicon glyphicon-home home" %></li>
-          <li><%= link_to 'SignIn', new_user_session_path, class: "glyphicon glyphicon-home home" %></li>
-        </ul>
-      <% end %>
-    </nav>
-  </div>
+      </div>
+    </div>
+  </nav>
 </header>

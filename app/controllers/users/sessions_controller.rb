@@ -9,14 +9,14 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    super
-  end
+  # def create
+  #   super
+  # end
 
   # DELETE /resource/sign_out
-  def destroy
-    super
-  end
+  # def destroy
+  #   super
+  # end
 
   protected
 
@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
 
  def after_sign_in_path_for(resource)
    flash[:sign_in] = "Welcome! You have signed up successfully."
-   user_path(resource)
+   user_path(current_user.id)
  end
 
  def after_sign_out_path_for(resource)

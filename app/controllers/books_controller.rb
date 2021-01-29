@@ -10,14 +10,18 @@ class BooksController < ApplicationController
   end
 
   def index
-    @user = current_user.id
-    @book = current_user.books.new(book_params)
+    @user = current_user
+    @book = current_user.books.new
     @books = Book.all
   end
 
   def show
-    @book = current_user.books.new(book_params)
+    @user = current_user
+    # MEMO: アソシエーションで user.books
+    @book = current_user.books.new
     @find_book = Book.find(params[:id])
+    # MEMO: アソシエーションで book.user
+    @book_user = @find_book.user
   end
 
   def create
@@ -27,6 +31,7 @@ class BooksController < ApplicationController
 
     # MEMO: 保存に成功したら、bookのshowページにリダイレクト
     if @book.save
+      flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book)
     # MEMO: エラーが発生した時、「自分のアクションに」bookのindexページを呼び込む
     # なので、indexページに必要なインスタンス変数を定義し直さないといけない。
@@ -36,6 +41,39 @@ class BooksController < ApplicationController
       @books = Book.all
       render :index
     end
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+
+    unless @book.user == current_user
+      redirect_to books_path
+    end
+    
+    @user = current_user
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    
+    unless @book.user == current_user
+      redirect_to books_path
+    end
+    
+    @user = current_user
+    if @book.update(book_params)
+      flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(@book)
+    else
+      @books = Book.all
+      render :index
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   private

@@ -1,6 +1,9 @@
 <!--MEMO* 全部共通のHTMLファイル。下のyieldにhtmlファイルが埋め込まれる -->
 <!DOCTYPE html>
 <html>
+  
+<!-- Custom styles for this template -->
+<link href="sticky-footer.css" rel="stylesheet">
   <head>
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
@@ -12,6 +15,10 @@
   </head>
 
   <body>
+    <%= flash[:sign_in] %>
+    <%= flash[:update] %>
+    <%= flash[:sign_out] %>
+    <%= flash[:notice] %>
     <!-- MEMO: 全部共通のとこから_nav.htmlを呼んだので、当然全部の画面で表示。 -->
     <%= render 'layouts/nav', user: @user %>
     <%= yield %>

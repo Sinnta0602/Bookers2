@@ -1,10 +1,12 @@
 <div class="body">
-  <div class=container>
-    <%= flash[:sign_in] %>
-    <%= flash[:update] %>
+  <div class="container">
     <div class="row">
-      <%= render 'layouts/profile', user: @book_user, book: @book %>
-      <div class="col-xs-9">
+
+      <div class="col-md-3">
+        <%= render 'layouts/profile', user: @book_user, book: @book %>
+      </div>
+
+      <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
         <table class="table table-hover table-inverse">
           <thead>
@@ -26,7 +28,7 @@
               </tr>
               <tr>
                 <td>
-                  <%= link_to book_path do %>
+                  <%= link_to book_path(book) do %>
                     <%= book.title %>
                   <% end %>
                 </td>

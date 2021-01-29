@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
  # MEMO: deviseのコードを上書きしてる。オーバーライドという。
  def configure_sign_up_params
-   devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+   devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
  end
 
  def after_sign_in_path_for(resource)
