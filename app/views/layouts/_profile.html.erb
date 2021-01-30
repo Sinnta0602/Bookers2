@@ -28,15 +28,12 @@
       <% end %>
     </div>
 
+
     <h2>New book</h2>
-    <!-- MEMO: bookの新規作成formを定義 -->
-    <!-- model: に「なんのモデルのデータを作るのか？」を入れる -->
-    <!-- |f|はお約束みたいなの。form_withの機能を使うとき、f.機能ってやるので、定義。 -->
-    <%= form_with model: book do |f| %>
-      <!-- MEMO: railsの仕組みで、bookというインスタンスのsaveが失敗したら、book.errorsにエラー文が入る。 -->
+
+    <!-- MEMO: railsの仕組みで、bookというインスタンスのsaveが失敗したら、book.errorsにエラー文が入る。 -->
       <!-- any?というrubyのメソッドで、存在するかどうか、を確認。あったらtrueが帰る -->
       <% if book.errors.any? %>
-        <p class="alert">
           <div id="error_explanation">
             <ul>
               <!-- MEMO: errorsのなかにfull_messagesという配列があって、その配列をeachで回して、エラー文を出力 -->
@@ -49,8 +46,13 @@
               <% end %>
             </ul>
           </div>
-        </p>
       <% end %>
+
+    <!-- MEMO: bookの新規作成formを定義 -->
+    <!-- model: に「なんのモデルのデータを作るのか？」を入れる -->
+    <!-- |f|はお約束みたいなの。form_withの機能を使うとき、f.機能ってやるので、定義。 -->
+    <%= form_with model: book, local: true do |f| %>
+
       <div class="field row">
         <h4>Title</h4>
         <div class="col-xs-12 book_title">
